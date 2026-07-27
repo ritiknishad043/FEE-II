@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            height:400px;
+            width:400px;
+            border: 2px black solid;
+            /* display: grid; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* justify-content:space-around;
+            flex-direction: column-reverse; */
+            /* grid-template-columns: 100px repeat(2,150px) 1fr; */
+            /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+            /* grid-template-columns: repeat(4,1fr); */
+            /* grid-template-rows: repeat(2,100px); */
+            /* grid-template-rows: 1fr 1fr 1fr; */
+            /* grid-template-rows: repeat(4,1fr); */
+            /* gap: 5px; */
+            position: relative;
+            left: 50px;
+            top: 100px;
+        }
+        .child{
+            height:50px;
+            width: 50px;
+            background-color: blue;
+            border: 2px black solid;
+            overflow: auto;
+            position: absolute;
+            
+        }
+        .b1{
+            top: 50px;
+            right: 50px;
+            z-index: 2;
+        }
+        .b2{
+            top: 40px;
+            right: 40px;
+            z-index: 1;
+        }
+        .b5{
+            top: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="child b1">1</div>
+        <div class="child b2">2</div>
+        <div class="child b3">3</div>
+        <div class="child b4">4</div>
+        <div class="child b5">5</div>          
+    </div>
+</body>
+</html>
