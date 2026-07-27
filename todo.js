@@ -1,8 +1,8 @@
 (function () {
 
     // const todos = [];
-    let todos=JSON.parse(localStorage.getItem("todos"||[]));
-    let id=localStorage.getItem("id"||0);
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+    let id = Number(localStorage.getItem("id")) || 0;
 
     const todoContainer = document.getElementById("todo");
 
@@ -24,7 +24,7 @@
         todoItem.className = "todoItem";
 
         const p = document.createElement("p");
-        p.textContent = task;
+        p.textContent = task.text;
 
         const buttonBox = document.createElement("div");
         buttonBox.className = "buttons";
@@ -109,6 +109,15 @@
             complete:false,
             edit:0
         }
+        todos.unshift(obj);
+
+        localStorage.setItem("todos", JSON.stringify(todos));
+        localStorage.setItem("id", id);
+
+        renderTask(obj);
+
+        todoInput.value = "";
+        todoInput.focus();
     }
 
     addButton.addEventListener("click", addTodo);
