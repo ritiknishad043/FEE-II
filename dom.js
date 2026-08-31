@@ -4,7 +4,10 @@
     document.body.style.marginTop="100px";
 
 
-    const todos=[];
+    // const todos=[];
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+    let id = Number(localStorage.getItem("id")) || 0;
+
     const todoContainer=document.getElementById("todo");
     const todoInput=document.createElement("input");
     const addbtn=document.createElement("button");
@@ -46,7 +49,7 @@
 
     todoContainer.append(todoInput,addbtn,todoList);
 
-    function rendertask(task){
+    function rendertask(todo){
         const todoItem=document.createElement("div")
         todoItem.style.border="1px solid #ddd";
         todoItem.style.margin="10px 0";
@@ -54,16 +57,15 @@
         todoItem.style.borderRadius="8px";
         todoItem.style.backgroundColor="white";
         todoItem.style.boxShadow="0 2px 5px rgba(0,0,0,0.1)";
-        todoItem.style.display="flex";
-        todoItem.style.justifyContent="space-between";
-        todoItem.style.alignItems="center";
+        todoItem.style.display = "flex";
+        todoItem.style.flexDirection = "column";
 
         const p=document.createElement("p");
         p.style.margin="0";
         p.style.fontSize="16px";
         p.style.fontWeight="500";
 
-        p.textContent=task;
+        p.textContent=todo.text;
         const deletbtn=document.createElement("button");
         deletbtn.textContent="Delete";
         deletbtn.style.backgroundColor="#dc3545";
@@ -83,56 +85,100 @@
         editbtn.style.cursor="pointer";
         editbtn.style.marginLeft="5px";
 
-        editbtn.addEventListener("click",function(){
-            const editinput=document.createElement("input");
-            editinput.style.padding="6px";
-            editinput.style.borderRadius="5px";
-            editinput.style.border="1px solid gray";
-            editinput.value=task;
-            const savebtn=document.createElement("button");
-            savebtn.textContent="Save";
-            savebtn.style.backgroundColor="#28a745";
-            savebtn.style.color="white";
-            savebtn.style.border="none";
-            savebtn.style.padding="6px 10px";
-            savebtn.style.borderRadius="5px";
-            savebtn.style.cursor="pointer";
-            savebtn.style.marginLeft="5px";
+        editbtn.addEventListener("click", function () {
 
-            todoItem.prepend(editinput,savebtn);
-            editinput.focus();
-            savebtn.addEventListener("click",function(){
-                const updatedtask=editinput.value;
-                if(!updatedtask){
-                    return;
-                }
-                p.textContent=updatedtask;
-                const index=todos.indexOf(task);
-                todos[index]=updatedtask;
-                editinput.remove();
-                savebtn.remove();
-                console.log(todos);
-            })
-        })
+        if (todoItem.querySelector("input")) return;
+
+        const editContainer = document.createElement("div");
+        editContainer.style.marginTop = "10px";
+        editContainer.style.display = "flex";
+        editContainer.style.gap = "8px";
+
+        const editinput = document.createElement("input");
+        editinput.style.padding = "6px";
+        editinput.style.borderRadius = "5px";
+        editinput.style.border = "1px solid gray";
+        editinput.value = todo.text;
+
+        const savebtn = document.createElement("button");
+        savebtn.textContent = "Save";
+        savebtn.style.backgroundColor = "#28a745";
+        savebtn.style.color = "white";
+        savebtn.style.border = "none";
+        savebtn.style.padding = "6px 10px";
+        savebtn.style.borderRadius = "5px";
+        savebtn.style.cursor = "pointer";
+
+        editContainer.append(editinput, savebtn);
+        todoItem.append(editContainer);
+
+        editinput.focus();
+
+        savebtn.addEventListener("click", function () {
+            const updatedTask = editinput.value.trim();
+
+            if (!updatedTask) return;
+
+            todo.text = updatedTask;
+            p.textContent = updatedTask;
+
+            saveTodos();
+
+            editContainer.remove();
+        });
+    });
 
         deletbtn.addEventListener("click",()=>{
-            const index=todos.indexOf(task);
-            todos.splice(index,1);
+            const index = todos.findIndex(t => t.id === todo.id);
+            todos.splice(index, 1);
+            saveTodos();
             todoItem.remove();
         })  
-        
-        todoItem.append(p,deletbtn,editbtn);
+        const buttonContainer = document.createElement("div");
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.gap = "8px";
+        buttonContainer.append(deletbtn, editbtn);
+
+        const topRow = document.createElement("div");
+        topRow.style.display = "flex";
+        topRow.style.justifyContent = "space-between";
+        topRow.style.alignItems = "center";
+        topRow.style.width = "100%";
+        topRow.append(p, buttonContainer);
+        todoItem.append(topRow);
+        // todoItem.append(p,deletbtn,editbtn);
         // todoList.append(p);  //add item at end
         todoList.prepend(todoItem);  // add item at start
     }
+
+    todos.forEach(todo => {
+        rendertask(todo);
+    });
+
+    function saveTodos() {
+        localStorage.setItem("todos", JSON.stringify(todos));
+        localStorage.setItem("id", id);
+    }
+
     function addtodo(){
         const task=todoInput.value;
         if(!task){
             return;
         }
-        console.log(task);
-        todos.unshift(task);
-        rendertask(task);
+
+        const todo = {
+            id: id++,
+            text: task,
+            completed: false,
+            editing: false
+        };
+
+        // console.log(task);
+        // todos.unshift(task);
+        // rendertask(task);
+        todos.unshift(todo);
+        saveTodos();
+        rendertask(todo);
         todoInput.value="";
         todoInput.focus();
     }

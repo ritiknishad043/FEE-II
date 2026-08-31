@@ -1,0 +1,15 @@
+.chColor1{
+  color: rebeccapurple;
+}
+.chColor2{
+  color: rgb(254, 125, 243);
+}
+
+.dark{
+  background-color: black;
+  color: white;
+}
+.light{
+  background-color: white;
+  color: black;
+}

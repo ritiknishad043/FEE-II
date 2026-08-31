@@ -1,0 +1,40 @@
+-In jsx(javascript XML) file you can write html and javascript together
+
+use {} bracket to add js in the html
+use {} to use numbers
+use camelcase to access properties
+
+<input type="text" />  //it is a self closing tag */
+
+functional components ->hooks
+class based components
+
+JSX(jsx file) also have rules:-
+
+    1.Name should start with capital letter
+
+    2.Component name should be same as jsx file name
+
+    3.A component can only return one element so we have to wrap our code in one element eg. div
+    or we can use special element *react fragment (<> </>)*
+    (***react fragment(<> </>) is perfered instead of other HTML element)
+
+    4.for giving class use className not class and also property names for other tags are also changed
+    
+    5.Use camel case 
+
+    6.Use curly brackets for using javascript 
+
+    7.We cannot use statements(like if-else,for loop,while loop etc) in html tags in jsx file
+    ***we can use them using ternary operator
+
+***CSS works as a object in react
+CSS properties are also in camelCase
+
+style={{}}
+***outer curly brackets is for using javascript  (style={})
+   and second brackets is for object   (style={{}})
+
+We also use curly bracket ({}) for comments because comments are also part of javascript [{/* */}]
+
+
