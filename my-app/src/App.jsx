@@ -5,7 +5,15 @@ import heroImg from './assets/hero.png'
 import Cart from './Cart'
 import Counter from './Counter'
 import Formhandling from './Formhandling'
-
+import Hooks from './Hooks'
+import Navbar from './component/Navbar'
+import {BrowserRouter, Routes, Route} from "react-router"
+import About from './component/About'
+import Products from './component/Products'
+import Login from './component/Login'
+import Home from './component/Home'
+import Contacts from './component/Contacts'
+import Productdetails from './component/Productdetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -100,7 +108,20 @@ function App() {
         </div> */}
 
         {/* <Counter/> */}
-        <Formhandling/>
+        {/* <Formhandling/> */}
+        {/* <Hooks/> */}
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/products/:id" element={<Productdetails  />}/>
+          </Routes>
+          <Contacts/>
+        </BrowserRouter>
+        
           
     </>
   )

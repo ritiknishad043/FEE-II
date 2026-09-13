@@ -37,4 +37,11 @@ style={{}}
 
 We also use curly bracket ({}) for comments because comments are also part of javascript [{/* */}]
 
+# useEffect hook: side-effect work part.
+-> callback func + dependency array (kise pr depend kr raha h re-render ke time)
+-> [] blank array means only 1st render pr load hoga.
+-> API call, backend system se interact krne ma use hoga useEffect hook.
 
+useRef: an object is made  and .current is used to change it value
+
+Routing: 
