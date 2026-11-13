@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import Cart from './Cart'
 import Counter from './Counter'
 import Formhandling from './Formhandling'
@@ -14,28 +11,107 @@ import Login from './component/Login'
 import Home from './component/Home'
 import Contacts from './component/Contacts'
 import Productdetails from './component/Productdetails'
+import Product from './Product'
+import { UserContext } from './context/UserContext'
+import { ThemeProvider } from './context/ThemeContext'
+import CountDisplay from './component/CountDisplay'
+import { useReducer } from 'react'
+import { ReducerContext } from './context/ReducerContext'
+import Input from './input'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-  const name="Ritik";
-  const age=19;
-  const a=10;
-  const b=10;
-  const flag=true;
-  const obj={
-    name:"Ritik",
-    age:19
-  };
-  const fruits=["apple","mango","banana","kivy","watermelon","muskmelon"];
-  const url="https://youtube.com"
-  function greet(){
-    return "Hello";
-  }
+  // const [count, setCount] = useState(0)
+  // const name="Ritik";
+  // const age=19;
+  // const a=10;
+  // const b=10;
+  // const flag=true;
+  // const obj={
+  //   name:"Ritik",
+  //   age:19
+  // };
+  // const fruits=["apple","mango","banana","kivy","watermelon","muskmelon"];
+  // const url="https://youtube.com"
+  // function greet(){
+  //   return "Hello";
+  // }
 
-  const [category, setCategory] = useState("All");
+  // const [category, setCategory] = useState("All");
+  // const username="Ritik";
+  // const lastname="Nishad";
+  // const user={
+  //   firstname:"Ritik",
+  //   lastname:"Nishad"
+  // }
+  // const [lastname,setLastname]=useState("Nishad");
 
 
-  
+  // const [count,setCount]=useState(0);
+  // function handleIncrement(){
+  //   setCount(count+1);
+  // }
+  // function handleDecrement(){
+  //   setCount(count-1);
+  // }
+
+  // const [count,dispatch]=useReducer(reducer,0);
+  // function reducer(state,action){
+  //   if(action.type==="increment"){
+  //     return state+action.payload
+  //   }
+  //   if(action.type==="decrement"){
+  //     return state-1
+  //   }
+  //   if(action.type==="double"){
+  //     return state*2
+  //   }
+  //   return state
+  // }
+  // function reducer(state,action){
+  //   switch(action.type){
+  //     case "increment": return state+action.payload;
+  //     case "decrement": return state-1;
+  //     case "double": return state*2;
+  //     default: return state;
+  //   }
+  // }
+
+  // const [email,setEmail]=useState("");
+  // const [password,setPassword]=useState("")
+  // const [age,setAge]=useState(0)
+  // const [formdata,setFormdata]=useState({
+  //   email:"",
+  //   password:"",
+  //   age:0
+  // })
+
+  // function handleChange(e){
+  //   const {name,value}=e.target
+  //   setFormdata({
+  //     ...formdata,
+  //     [name]:value
+      
+  //   })
+  //   console.log(formdata.email)
+    
+  // }
+
+
+  // function handleEmail(e){
+  //   setEmail(e.target.value)
+  // }
+  // function handlePassword(e){
+  //   setPassword(e.target.value)
+  // }
+  // function handleAge(e){
+  //   setAge(e.target.value)
+  // }
+
+  // function handleSubmit(e){
+  //   e.preventDefault();
+  //   console.log(formdata)
+  // }
 
   return (
     <>
@@ -109,9 +185,10 @@ function App() {
 
         {/* <Counter/> */}
         {/* <Formhandling/> */}
-        {/* <Hooks/> */}
-        <BrowserRouter>
-          <Navbar/>
+        {/* <Hooks/> */} 
+
+        {/* <BrowserRouter>
+          <Navbar username={username} lastname={lastname}/>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
@@ -120,9 +197,51 @@ function App() {
             <Route path="/products/:id" element={<Productdetails  />}/>
           </Routes>
           <Contacts/>
-        </BrowserRouter>
-        
+        </BrowserRouter> */}
+        {/* <Product/> */}
+
+        {/* <UserContext.Provider value={{username,lastname}}>
+          <h1>App Component</h1>
+          <Navbar/>
+        </UserContext.Provider> */}
+
+        {/* <UserContext.Provider value={user}>
+          <h1>App Component</h1>
+          <Navbar/>
+        </UserContext.Provider> */}
+
+        {/* <ThemeProvider>
+          <h1>App Component</h1>
+          <Navbar/>
+        </ThemeProvider> */}
           
+
+        {/* <ReducerContext.Provider value={{count,dispatch}}> */}
+          {/* <h1>App Component</h1> */}
+          {/* <h2>{count}</h2> */}
+          {/* <button onClick={handleIncrement}>Increase</button> */}
+          {/* <button onClick={handleDecrement}>Decrease</button> */}
+          {/* <button onClick={()=>dispatch({type:"increment",payload:10})}>increase</button> */}
+          {/* <button onClick={()=>dispatch({type:"decrement"})}>decrease</button> */}
+          {/* <CountDisplay count={count} dispatch={dispatch}/> */}
+          {/* <form onSubmit={handleSubmit}> */}
+            {/* <label>Email:</label>
+            <input type="email" value={formdata.email} name="email" onChange={handleChange}/>
+            <label>Password:</label>
+            <input type="password" value={formdata.password} name="password" onChange={handleChange}/>
+            <label>Age:</label>
+            <input type="number" min="0" max="50" value={formdata.age} name="age" onChange={handleChange} /> */}
+
+            {/* <input lable="Email" name='email' type="email" placeholder='Enter your Email' value={formdata.email} onChange={handleChange}/>
+            <input lable="Password" name='password' type="password" placeholder='Enter your Password' value={formdata.password} onChange={handleChange}/>
+            <input lable="Age" name='Age' type="Age" min="0" max="50" placeholder='Enter your Age' value={formdata.age} onChange={handleChange}/>
+            <button type='submit'>Submit</button>
+          </form>  */}
+        {/* </ReducerContext.Provider>  */}
+
+        
+        
+        
     </>
   )
 }
