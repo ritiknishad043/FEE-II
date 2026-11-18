@@ -1,0 +1,52 @@
+
+Arrange the following in order of importance
+
+JS, props,UI,web application,forms,router,component,onSubmit,multipages,react,Zustand,US,map,
+filter,onClick,state,buttons,links,validation,CSS,function,global state,nested routes
+
+
+JS
+function
+react
+UI
+CSS
+web application
+component
+props
+state
+onClick
+forms
+onSubmit
+validation
+map
+filter
+button
+links
+router
+multipages
+nested routes
+global state
+Zustand
+
+
+#Top 5 important from the above arrangement
+
+JS (Javascript): core foundation
+javaScript is the foundation of web development because it makes websites interactive and dynamic it handles logic, events, and data manipulation
+Logic: it is placed first because React and many other web technologies depend on javaScript
+
+function: code organization
+functions are reusable blocks of code that perform specific tasks they reduce repetition and make code easier to manage
+Logic: they are important because they help organize the logic used in web applications
+
+react: application development
+react is a JavaScript library used to build interactive web applications  it allows developers to create reusable components and manage data using props and state
+Logic: it comes after JavaScript because a good understanding of JS makes React easier to learn
+
+UI: user interaction
+UI is the visual part of an application that users interact with it includes buttons, forms, menus, images, and layouts
+Logic: it is important because a good UI makes an application simple and easy to use
+
+CSS: visual presentation
+CSS controls the appearance of web pages through colours, fonts, spacing, and layouts it also makes websites responsive on different screen sizes
+Logic: it is important because it improves the overall look and user experience of an application
